@@ -5,9 +5,11 @@
 <section class="section">
     <div class="section-header">
         <h1>Kategori Buku</h1>
+
     </div>
     <div class="section-body">
-            <a href="" title="Tambah Kategori"
+       
+            <a href="{{route('createKategori')}}" title="Tambah Kategori"
                 style="float: right; margin-right: 2%" class="btn btn-primary mr-1">Tambah Kategori</a><br>
         <table id="data-admin" class="table table-striped table-bordered table-md"
             style="width: 100%; margin-top:5%; padding:2%;" cellspacing="1">
@@ -19,15 +21,18 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <?php $i = 1;?>
+                @foreach($kategori as $kt)
+
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>{{$i++}}</td>
+                    <td>{{$kt->nama_kategori}}</td>
                     <td>
-                    <a href="" class="btn btn-danger mr-1">Delete</i></a>
+
+                    <a href="{{route('deleteKategori', ['id' => $kt->id]) }}" class="btn btn-danger mr-1">Delete</i></a>
                     </td>
                 </tr>
-             
+               @endforeach
             </tbody>
         </table>
     </div>

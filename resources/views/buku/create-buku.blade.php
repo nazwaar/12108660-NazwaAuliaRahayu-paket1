@@ -4,13 +4,18 @@
 <section class="section">
   <div class="section-header">
     <h1>Create Add Buku</h1>
+    <!-- <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+        <div class="breadcrumb-item"><a href="#">Buat Accountn</a></div>
+      </div> -->
   </div>
 
   <div class="section-body">
+    <!-- <h2 class="section-title">Buat Account</h2> -->
     <p class="section-lead"></p>
     <br>
-    <form method="" action="" enctype="multipart/form-data">
-      
+    <form method="POST" action="{{route('storeBuku')}}" enctype="multipart/form-data">
+      @csrf
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="card">
@@ -46,9 +51,9 @@
                 <label for="kategori_id" class="col-sm-3 col-form-label">Kategori</label>
                 <div class="col-sm-5">
                   <select name="kategori_id" class="form-control">
-                   
-                    <option value=""></option>
-                   
+                    @foreach($kategori as $kat)
+                    <option value="{{ $kat->id}}">{{ $kat->nama_kategori }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -58,6 +63,9 @@
                   <input type="file" class="form-control" name="cover">
                 </div>
               </div>
+              <!-- <input type="hidden" name="is_admin" value="0">
+            </div> -->
+            <!-- <div class="card-footer text-right"> -->
             <button type="submit" class="btn btn-primary">Simpan</button>
           </div>
         </div>

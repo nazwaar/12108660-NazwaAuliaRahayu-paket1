@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -53,27 +53,27 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/data-petugas">
                     <i class="fas fa-fw fa-table"></i>
                     <span>User</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/data-kategori">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Book Category</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/data-peminjaman">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Book Borrowed</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/buku">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Book</span></a>
             </li>
@@ -107,20 +107,20 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                        
+
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hi</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->nama ?? '' }}</span>
                             </a>
-                            
+
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <!-- Logout Link with Form Submission -->
-                                <form id="logout-form" action="">
-                                    
+                                <form id="logout-form" action="{{ route('logout') }}">
+                                    @csrf
                                     <button type="submit" class="dropdown-item">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
@@ -146,22 +146,22 @@
                         <div class="col-lg-12 mb-4">
                             <div class="card-deck">
                                 <!-- BUKU -->
-                                
+                                @foreach($buku as $bk)
                                 <div class="col-md-3 mb-4">
                                     <div class="card">
-                                    <img src="" />
+                                    <img src="{{ asset('cover/' . $bk->cover) }}" />
 
                                         <div class="card-body">
-                                            <h5 class="card-title text-center">Bumi</h5>
-                                            <p class="card-text text-center">Tere Liye</p>
-                                            <a href="" class="btn btn-primary">See Review</a>
+                                            <h5 class="card-title text-center">{{$bk->judul}}</h5>
+                                            <p class="card-text text-center">{{$bk->penulis}}</p>
+                                            <a href="/showUlasan" class="btn btn-primary">See Review</a>
                                         </div>
                                         <div class="card-footer">
-                                            <small class="text-muted text-center d-block">Gramedia - 2015</small>
+                                            <small class="text-muted text-center d-block">{{$bk->penerbit}} - {{$bk->tahun_terbit}}</small>
                                         </div>
                                     </div>
                                 </div>
-                                
+                                @endforeach
                             </div>
                         </div>
                         <!-- End of Main Content -->
@@ -175,7 +175,7 @@
         <!-- End of Page Wrapper -->
 
         <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#">
+        <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
 
@@ -193,7 +193,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="">Logout</a>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
             </div>

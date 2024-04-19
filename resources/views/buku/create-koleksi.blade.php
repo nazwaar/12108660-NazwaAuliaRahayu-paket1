@@ -3,10 +3,10 @@
 @section('content')
   <section class="section">
     <div class="section-header">
-      <h1>Buat Kategori Buku</h1>
+      <h1>Create Book Collection </h1>
        <div class="section-header-breadcrumb">
-         <div class="breadcrumb-item active"><a href="/kategori-buku">Book Category</a></div><br></br>
-
+         <div class="breadcrumb-item active"><a href="/buku">Book Collection</a></div>
+        <!-- <div class="breadcrumb-item"><a href="#">Buat data</a></div> -->
       </div>
     </div>
 
@@ -16,7 +16,7 @@
       <br>
       <form method="POST" action="{{route('storeKategori')}}" enctype="multipart/form-data">
         @csrf
-        <div class="row col-sm-6 offset-md-2">
+        <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header">

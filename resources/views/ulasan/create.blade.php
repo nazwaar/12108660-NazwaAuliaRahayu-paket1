@@ -1,22 +1,22 @@
 
-@extends('layouts.master')
+@extends('peminjam.dashboard-page')
 
 @section('content')
     <div class="container">
         <h1>Buat Ulasan Baru</h1>
-        <form action="" method="">
-            
+        <form action="{{ route('ulasan.store') }}" method="POST">
+            @csrf
 
             <div class="form-group">
                 <label for="buku_id">Pilih Buku:</label>
                 <select name="buku_id" id="buku_id" class="form-control">
-                    
-                        <option value="">Judul</option>
-                    
+                    @foreach($buku as $bk)
+                        <option value="{{ $bk->id }}">{{ $bk->judul }}</option>
+                    @endforeach
                 </select>
             </div>
 
-            <div class="form-group">
+             <div class="form-group">
                 <label for="rating">Rating:</label><br>
                 <input type="radio" id="satu" name="rating" value="1">
                 <label for="satu">1</label>
@@ -38,6 +38,6 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
-        
+
     </div>
 @endsection

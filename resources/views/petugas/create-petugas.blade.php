@@ -9,14 +9,21 @@
     <div class="section-body">
       <p class="section-lead"></p>
       <br>
-      <form method="" action="" enctype="multipart/form-data">   
-        
+      <form method="POST" action="{{route('storePetugas')}}" enctype="multipart/form-data">
+        @csrf
         <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="card">
             <div class="card-header">
               <h4>Form Petugas</h4>
             </div>
+            <div class="card-body">
+                <div class="form-group row">
+                  <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" name="nama">
+                  </div>
+                </div>
             <div class="card-body">
               <div class="form-group row">
                 <label for="username" class="col-sm-3 col-form-label">Username</label>
@@ -37,12 +44,6 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="nama_lengkap" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" name="nama_lengkap">
-                </div>
-              </div>
-              <div class="form-group row">
                 <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                 <div class="col-sm-5">
                   <input type="text" class="form-control" name="alamat">
@@ -53,6 +54,7 @@
                 <label for="role" class="col-sm-3 col-form-label">Role</label>
                 <div class="col-sm-5">
                   <select class="form-control" id="role" name="role" required>
+                    <option value="admin">Admin</option>
                     <option value="petugas">Petugas</option>
                     <option value="peminjam">Peminjam</option>
                   </select>

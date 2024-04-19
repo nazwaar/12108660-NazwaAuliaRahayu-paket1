@@ -48,12 +48,12 @@ class User extends Authenticatable
 
     public function buku(){
         // hasMany() untuk menunjukkan bahwa satu kategori dapat memiliki banyak buku
-        return $this->hasMany(Buku::class);
+        return $this->hasMany(Buku::class, 'user_id');
     }
 
     public function koleksipribadis()
     {
-        return $this->hasMany(KoleksiPribadi::class);
+        return $this->hasMany(Koleksipribadi::class);
     }
 
     public function ulasans()

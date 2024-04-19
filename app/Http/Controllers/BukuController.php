@@ -4,37 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use App\Http\Controllers\KategoriController;
+use App\Models\Kategori;
+use Illuminate\Storage;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class BukuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function createBuku()
     {
-        return view('buku.buku');
+        $kategori = Kategori::all();
+        // $buku = Buku::all();
+        return view('buku.create-buku', compact('kategori'));
+        // return view('buku.create-buku');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function storeBuku(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
+        // Validasi input
         $request->validate([
-        'judul'=> 'required|string',
-        'penulis'=> 'required|string',
-        'penerbit'=> 'required|string',
-        'tahun_terbit'=> 'required|integer',
-        'kategori_id'=> 'required|exists:kategoris, id',
-        'cover'=> 'required|image|mimes:jpeg, jpg, png, gift',
+        'judul' => 'required|string',
+        'penulis' => 'required|string',
+        'penerbit' => 'required|string',
+        'tahun_terbit' => 'required|integer',
+        'kategori_id' => 'required|exists:kategoris,id', // Pastikan kategori_id ada dalam tabel kategoris
+        'cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $cover = $request->file('cover');
@@ -58,44 +52,62 @@ class BukuController extends Controller
         }
 
         Buku::create([
-        'judul' => $request->judul,
-        'penulis'=> $request->penulis,
-        'penerbit'=> $request->penerbit,
-        'tahun_terbit'=> $request->tahun_terbit,
-        'kategori_id'=> $request->kategori_id,
-        'cover'=> $request->cover,
+            'judul' => $request->judul,
+            'penulis'=>$request->penulis,
+            'penerbit'=>$request->penerbit,
+            'tahun_terbit'=>$request->tahun_terbit,
+            'kategori_id' => $request->kategori_id,
+            'cover'=>$uploaded,
+
         ]);
+
+        return redirect()->route('dataBuku');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Buku $buku)
+    public function showBuku(Buku $buku)
     {
-        //
+        $buku = Buku::with('kategori')->get();
+        // $kategori = Kategoribuku::all();
+        return view('buku.buku', compact('buku'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Buku $buku)
+    public function editBuku($buku_id)
     {
-        //
+        $kategori = Kategori::all();
+        $buku = Buku::get();
+        $buku = Buku::where('id', $buku_id)->first();
+        return view('buku.edit-buku', (compact('buku', 'kategori')));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Buku $buku)
+    public function updateBuku(Request $request, $buku_id, $buku)
     {
-        //
+        // Check if a new cover file is uploaded
+            if ($request->hasFile('cover')) {
+        // Delete old cover file if exists
+            FacadesStorage::delete($buku->cover);
+
+        // Upload new cover file
+            $coverPath = $request->file('cover')->store('covers');
+
+        // Update cover field in database
+            $buku->cover = $coverPath;
+        }
+        Buku::where('id', $buku_id)->update([
+            'judul' => $request->judul,
+            'penulis'=>$request->penulis,
+            'penerbit'=>$request->penerbit,
+            'tahun_terbit'=>$request->tahun_terbit,
+            // 'cover'=>$uploaded,
+            'kategori_id' => $request->kategori_id,
+        ]);
+        return redirect()->route('dataBuku');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Buku $buku)
+    public function deleteBuku($buku_id)
     {
-        //
+        Buku::where('id', $buku_id)->Delete();
+        return redirect()->route('dataBuku');
     }
 }
+

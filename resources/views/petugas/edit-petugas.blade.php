@@ -4,13 +4,18 @@
   <section class="section">
     <div class="section-header">
       <h1>Create Account Petugas</h1>
+      <!-- <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+        <div class="breadcrumb-item"><a href="#">Buat Accountn</a></div>
+      </div> -->
     </div>
 
     <div class="section-body">
+      <!-- <h2 class="section-title">Buat Account</h2> -->
       <p class="section-lead"></p>
       <br>
-      <form method="" action="" enctype="multipart/form-data">   
-        
+      <form method="POST" action="{{route('updatePetugas', $data->user_id)}}" enctype="multipart/form-data">
+        @csrf
         <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="card">
@@ -21,31 +26,31 @@
               <div class="form-group row">
                 <label for="username" class="col-sm-3 col-form-label">Username</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="username" value="" >
+                  <input type="text" class="form-control" name="username" value="{{$data->username}}" >
                 </div>
               </div>
               <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-5">
-                  <input type="password" class="form-control" name="password" value="">
+                  <input type="password" class="form-control" name="password" value="{{$data->password}}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-5">
-                  <input type="email" class="form-control" name="email" value="">
+                  <input type="email" class="form-control" name="email" value="{{$data->email}}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="nama_lengkap" class="col-sm-3 col-form-label">Nama Lengkap</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="nama_lengkap" value="">
+                  <input type="text" class="form-control" name="nama_lengkap" value="{{$data->nama_lengkap}}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="alamat" value="">
+                  <input type="text" class="form-control" name="alamat" value="{{$data->alamat}}">
                 </div>
               </div>
                <!-- Dropdown untuk memilih peran -->

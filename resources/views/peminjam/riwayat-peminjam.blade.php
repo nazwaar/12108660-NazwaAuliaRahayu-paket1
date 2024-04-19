@@ -33,21 +33,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                
+                                <?php $i = 1;?>
+                                @foreach($riwayatPeminjaman as $peminjaman)
+                                @if ($peminjaman->user_id === auth()->id())
                                 <tr>
-                                    <th scope="row"></th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    </td>
-                                    <td></td>
+                                    <th scope="row">{{ $i++ }}</th>
+                                    <td>{{ $peminjaman->user->username }}</td>
+                                    <td>{{ $peminjaman->buku->judul }}</td>
+                                    <td>{{ $peminjaman->tanggal_peminjaman }}</td>
                                     <td>
+                                        <!-- @if ($peminjaman->status_peminjaman == 'dipinjam')
+                                            {{ $peminjaman->tanggal_pengembalian }}
+                                        @else
+                                            {{ $peminjaman->tanggal_pengembalian }}
+                                        @endif -->
+
+                        @if($peminjaman->status_peminjaman == 'dipinjam')
+                        -
+                        @else
+                        {{ $peminjaman->tanggal_pengembalian }}
+                        @endif
+                    </td>
+                                    </td>
+                                    <td>{{ $peminjaman->status_peminjaman }}</td>
+                                    <td>
+                                        @if ($peminjaman->status_peminjaman == 'dipinjam')
+                                            <a href="{{ route('pengembalian', ['id' => $peminjaman->id]) }}" class="btn btn-primary">Kembalikan</a>
+                                        @else
                                             <button class="btn btn-primary" disabled>Kembalikan</button>
+                                        @endif
                                     </td>
                                 </tr>
-                              
-                                
+                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
