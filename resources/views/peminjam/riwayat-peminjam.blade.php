@@ -1,6 +1,10 @@
 @extends('peminjam.dashboard-page')
 @section('content')
-
+<!-- @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif -->
 <div class="page-breadcrumb">
     <div class="row align-items-center">
         <div class="col-6">
@@ -48,11 +52,18 @@
                                             {{ $peminjaman->tanggal_pengembalian }}
                                         @endif -->
 
-                        @if($peminjaman->status_peminjaman == 'dipinjam')
+                        <!-- @if($peminjaman->status_peminjaman == 'dipinjam')
                         -
                         @else
                         {{ $peminjaman->tanggal_pengembalian }}
-                        @endif
+                        @endif -->
+                        @if(session()->has('error_' . $peminjaman->id))
+                    <div class="alert alert-danger">{{ session('error_' . $peminjaman->id) }}</div>
+                @elseif($peminjaman->status_peminjaman == 'dipinjam')
+                    -
+                @else
+                    {{ $peminjaman->tanggal_pengembalian }}
+                @endif
                     </td>
                                     </td>
                                     <td>{{ $peminjaman->status_peminjaman }}</td>

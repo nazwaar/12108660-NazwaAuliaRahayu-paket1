@@ -62,9 +62,11 @@ Route::get('/riwayat-peminjam', [PeminjamanController::class, 'dataPeminjaman'])
 // pinjam buku-------------------
 Route::post('/borrowBook/{buku}', [PeminjamanController::class, 'borrowBook'])->name('borrowBook');
 Route::get('/pengembalian/{id}', [PeminjamanController::class, 'pengembalian'])->name('pengembalian');
-Route::get('/peminjaman/export-pdf', [PeminjamanController::class, 'exportToPDF'])->name('peminjaman.export.pdf');
-
-
+// Route::get('/peminjaman/export-pdf', [PeminjamanController::class, 'exportToPDF'])->name('peminjaman.export.pdf');
+// Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+// Route::get('/exportPeminjam', [PeminjamanController::class, 'exportToPDF'])->name('exportPeminjaman');
+Route::get('/preview/export-pdf', [PeminjamanController::class, 'previewPDF'])->name('exportbook');
+Route::get('/preview/export-excel', [PeminjamanController::class, 'pinjamExcel'])->name('pinjamExcel');
 
 // buku
 Route::get('/buku', [BukuController::class, 'showBuku'])->name('dataBuku');

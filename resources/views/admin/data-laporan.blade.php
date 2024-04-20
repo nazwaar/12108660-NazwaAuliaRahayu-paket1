@@ -10,10 +10,13 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="col text-end">
-        <a href="{{ route('peminjaman.export.pdf') }}" class="btn btn-primary">Export to PDF</a>
-    </div>
+<form action="{{route('pinjamExcel')}}" method="get">
+                    @csrf
+                    <input name="search" value="{{request('search')}}" type="text" hidden>
+                    <button type="submit" class="btn-terima" style="font-size: 13px;">
+                        <i class="fa-solid fa-download" style="margin-right: 10px;"></i> Export Excel
+                    </button>
+                </form>
 
     <div class="row">
         <div class="col-12">
@@ -24,6 +27,16 @@
                         </div>
                     </div>
                     <div class="table-responsive">
+                    <form action="{{route('dataPeminjaman')}}" method="GET">
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                          <input type="search" value="{{ request('search') }}" style="font-size: 14px; width: 400px;" name="search" id="search" class="form-control" placeholder="Cari buku pilihan anda disini .." />
+                        </div>
+                        <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
+                </form>
                         <table class="table">
                             <thead>
                                 <tr>

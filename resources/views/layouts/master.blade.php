@@ -20,6 +20,23 @@
     <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <style>
+        .btn-terima {
+    font-size: 13px;
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-terima:hover {
+    background-color: #0056b3;
+}
+    </style>
+
 </head>
 
 <body id="page-top">

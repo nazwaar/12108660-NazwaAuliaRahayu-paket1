@@ -4,11 +4,11 @@
     <div class="container">
         <h2>Koleksi Buku dalam Keranjang</h2><br></br>
         <div class="row">
-            @if (session('success'))
+            <!-- @if (session('success'))
                 <div class="alert alert-success">
                     {{session ('success')}}
                 </div>
-            @endif
+            @endif -->
             @foreach($bukuKeranjang as $buku)
                 <div class="col-md-4">
                     <div class="card mb-4">
@@ -26,6 +26,7 @@
                             <button type="submit" class="btn btn-danger mr-1">Delete</button>
                         </form>
 
+                        
                                 @php
                                    $userCollection = auth()->user()->peminjamen;
                                @endphp
