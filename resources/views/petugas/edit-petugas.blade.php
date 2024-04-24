@@ -3,7 +3,7 @@
 @section('content')
   <section class="section">
     <div class="section-header">
-      <h1>Create Account Petugas</h1>
+      <h1>Edit Account Petugas</h1>
       <!-- <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
         <div class="breadcrumb-item"><a href="#">Buat Accountn</a></div>
@@ -14,7 +14,7 @@
       <!-- <h2 class="section-title">Buat Account</h2> -->
       <p class="section-lead"></p>
       <br>
-      <form method="POST" action="{{route('updatePetugas', $data->user_id)}}" enctype="multipart/form-data">
+      <form method="POST" action="{{route('updatePetugas', $data->id)}}" enctype="multipart/form-data">
         @csrf
         <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -23,6 +23,12 @@
               <h4>Form Petugas</h4>
             </div>
             <div class="card-body">
+            <div class="form-group row">
+                <label for="nama_lengkap" class="col-sm-3 col-form-label">Nama</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="nama_lengkap" value="{{$data->nama}}">
+                </div>
+              </div>
               <div class="form-group row">
                 <label for="username" class="col-sm-3 col-form-label">Username</label>
                 <div class="col-sm-5">
@@ -39,12 +45,6 @@
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-5">
                   <input type="email" class="form-control" name="email" value="{{$data->email}}">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="nama_lengkap" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" name="nama_lengkap" value="{{$data->nama_lengkap}}">
                 </div>
               </div>
               <div class="form-group row">

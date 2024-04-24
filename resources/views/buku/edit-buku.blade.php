@@ -10,7 +10,7 @@
     <!-- <h2 class="section-title">Buat Account</h2> -->
     <p class="section-lead"></p>
     <br>
-    <form method="POST" action="{{route('updateBuku', $buku->buku_id)}}" enctype="multipart/form-data">
+    <form method="POST" action="{{route('updateBuku', $buku->id)}}" enctype="multipart/form-data">
       @csrf
       <div class="row">
         <div class="col-md-8 offset-md-2">

@@ -31,14 +31,14 @@
                             <div class="form-floating">
                                 <input type="email" name="email" class="form-control mt-2" id="email" placeholder="name@example.com">
                                 <label for="email">Email</label>
-                            </div
+</div>
 
                             <div class="form-floating">
                                 <input type="alamat" name="alamat" class="form-control mt-2" id="alamat" placeholder="Jl. Raya Bogor">
                                 <label for="alamat">Alamat</label>
                             </div>
 
-                        {{-- / Dropdown untuk memilih peran --> --}}
+                         <!-- / Dropdown untuk memilih peran -->
                          <div class="form-floating mt-2">
                             <select class="form-select mt-2" id="role" name="role" required>
                                 <option value="admin">Admin</option>
